@@ -33,7 +33,7 @@
         const { name, pwd, $router } = this
         this.$router.push({
           name: "home",
-          params: {
+          query: {
             username: this.name
           }
         });

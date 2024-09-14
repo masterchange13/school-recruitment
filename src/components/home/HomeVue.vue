@@ -1,7 +1,12 @@
 <template>
     <div class="content">
         <el-container>
-            <el-header class="header">校园招聘网</el-header>
+            <el-header class="header">校园招聘网
+                <el-tooltip content="Top center" placement="top">
+                    <!-- <el-button>Dark</el-button> -->
+                    <span class="people_style">welcome: <strong>{{ people }}</strong></span>
+                </el-tooltip>
+            </el-header>
             <el-container>
                 <el-aside width="200px" class="aside">
                     <NavigateVue/>
@@ -18,6 +23,26 @@
 
 <script setup>
     import NavigateVue from '../utils/NavigateVue.vue'
+    import { ref, defineProps } from 'vue'
+    import { useRoute } from 'vue-router'
+
+    const props = defineProps({
+        people: {
+            type: String,
+            default: '游客'
+        }
+    })
+
+    // 使用 ref 来保存 people 值
+    let people = ref(props.people)
+
+    const route = useRoute()
+
+    // 获取路由中的 username 参数
+    if(route.query.username){
+        people.value = route.query.username
+        console.log(people.value)
+    }
 </script>
 
 <style scoped>
@@ -59,5 +84,9 @@
     }
     .aside{
         /* position: fixed; */
+    }
+    .people_style{
+        color: rgb(77, 112, 100);
+        text-align: right;
     }
 </style>

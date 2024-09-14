@@ -19,6 +19,7 @@ const routes = [
     {
         path: '/home',
         name: 'home',
+        redirect: '/home/number',
         component: () => import('@/components/home/HomeVue.vue'),
         children: [
             {
