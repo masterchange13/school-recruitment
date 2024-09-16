@@ -6,10 +6,12 @@
                     <!-- <el-button>Dark</el-button> -->
                     <span class="people_style">welcome: <strong>{{ people }}</strong></span>
                 </el-tooltip>
+                <el-button type="primary" @click="ToMyPage()">个人主页</el-button>
             </el-header>
             <el-container>
                 <el-aside width="200px" class="aside">
                     <NavigateVue/>
+                    <el-button type="primary" @click="postNew()">发布</el-button>
                 </el-aside>   
                 <el-main class="main">
                     <router-view/>
@@ -24,7 +26,7 @@
 <script setup>
     import NavigateVue from '../utils/NavigateVue.vue'
     import { ref, defineProps } from 'vue'
-    import { useRoute } from 'vue-router'
+    import { useRoute, useRouter } from 'vue-router'
 
     const props = defineProps({
         people: {
@@ -37,11 +39,25 @@
     let people = ref(props.people)
 
     const route = useRoute()
+    const router = useRouter()
 
     // 获取路由中的 username 参数
     if(route.query.username){
         people.value = route.query.username
         console.log(people.value)
+    }
+
+    const postNew = () => {
+        router.push('/post')
+    }
+
+    const ToMyPage = () => {
+        router.push(
+            {
+                path: '/mypage',
+                query:people.value
+            }
+        )
     }
 </script>
 

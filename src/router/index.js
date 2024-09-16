@@ -2,14 +2,13 @@ import {createRouter, createWebHistory, createWebHashHistory} from 'vue-router'
 
 const routes = [
     {
-        path: '/',
-        name: 'login',
-        redirect: '/login'
+        path: '/login',
+        name: 'login',  // 这是 /login 的名称
+        component: () => import('@/components/login/LoginVue.vue')
     },
     {
-        path: '/login',
-        name: 'login',
-        component: () => import('@/components/login/LoginVue.vue')
+        path: '/',  // 定义 / 路径
+        redirect: '/login',  // 直接重定向到 /login
     },
     {
         path: '/page',
@@ -43,6 +42,16 @@ const routes = [
         path: '/item/:id',
         name: 'item',
         component: () => import('@/components/utils/ItemVue.vue')
+    },
+    {
+        path: '/post',
+        name: 'post',
+        component: () => import('@/components/home/PostVue.vue')
+    },
+    {
+        path: '/mypage',
+        name: 'mypage',
+        component: () => import('@/components/home/MyPageVue.vue')
     }
 ];
 

@@ -30,7 +30,7 @@ if (route.query.item) {
 
 <style scoped>
 .head {
-  color: yellow;
+  color: rgb(152, 214, 123);
   text-align: center;
 }
 .content {
